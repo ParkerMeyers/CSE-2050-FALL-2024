@@ -3,7 +3,7 @@
 > **Instructor:** [Prof. Lina Kloub](https://engineering.uconn.edu/person/lina-kloub/)
 > **Semester:** Fall 2024
 > **Course Description:** Data Structures and Object-Oriented Design is a foundational course that delves into the world of data structures and algorithms. In this course, students will embark on a journey to understand the core principles and best practices for designing efficient data structures, while also exploring the fundamental concepts of object-oriented programming (OOP).
-
+> **Work:** Parker Meyers
 > **Learning Objective by Week: ** [click](LEARNINGOBJBYWEEK.md)
 
 ## Topics Covered
