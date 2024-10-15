@@ -34,7 +34,7 @@
 - (Mod #7) **10/14-10/18** _[Ch 13-14]_**:** Divide and Conquer
   - Homework #7: [click](Homework/HW7)
   - Lab #7: [click](Labs/Lab7)
-- **10/21-10/25**_Modules 5-7_**: EXAM #2**
+- **10/21-10/25** _Modules 5-7_**: EXAM #2**
 - (Mod #8) **10/28-11/1** _[Ch 15]_**:** Mappings and Hashing
   - Homework #8: [click](Homework/HW8)
   - Lab #8: [click](Labs/Lab8)
@@ -50,7 +50,7 @@
 - (Mod #12) **12/2-12/6** _[Ch 20-21]_**:** Unweighted Graphs 2
   - Homework #12: [click](Homework/HW12)
   - Lab #12: [click](Labs/Lab12)
-- **12/9-12/13**_Modules 8-11_**: FINAL EXAM**
+- **12/9-12/13** _Modules 8-11_**: FINAL EXAM**
 
 ## Resources
 - [Syllabus](https://documentcloud.adobe.com/spodintegration/index.html?locale=en-us)
