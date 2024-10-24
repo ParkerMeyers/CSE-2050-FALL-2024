@@ -8,8 +8,9 @@ In this homework, we will be creating our own hybrid sorting algorithm, **`magic
 
 * Scan the list to see if we have a special case, like:
     * List is already sorted -> return.
-    * List is almost sorted (only has a few items out-of-order) -> use `insertion_sort`.
     * List is reverse-sorted -> use `sort_reversed`.
+    * List is almost sorted (only has a few items out-of-order) -> use `insertion_sort`.
+
 
 If none of the above cases are true, we try to sort the list with a modified `quicksort`. This algorithm behaves as normal, but:
 
@@ -17,7 +18,7 @@ If none of the above cases are true, we try to sort the list with a modified `qu
 * If we get too many bad pivots, transitions to `mergesort`.
 * For both `quicksort` and `mergesort`, we will transition to `insertion_sort` once our sublists get below 20 items.
 
-This assignment can be deceptively complex. If you've never tried to piece together four or five algorithms to achieve recursive functionality, you will quickly find out why we push incremental test-driven development so hard. It's nigh-impossible to debug unless you have a thorough suite of unittests that you implemene one-by-one for each algorithm.
+This assignment can be deceptively complex. If you've never tried to piece together four or five algorithms to achieve recursive functionality, you will quickly find out why we push incremental test-driven development so hard. It's nigh-impossible to debug unless you have a thorough suite of unittests that you implement one-by-one for each algorithm.
 
 We have provided you a suite of unittests for each function. Gradescope will also run these unittests, and **you will be graded on passing them**, but the test cases are hidden in gradescope. This is to incentivize you to debug locally rather than with the autograder. The testcases used in gradescope are functionally identical to the ones we have provided you - the only differences are some decorators we use to give unittests point-values and have them time-out after a few seconds.
 
@@ -26,10 +27,10 @@ We have provided you a suite of unittests for each function. Gradescope will als
 We will start by scanning our list from left to right, counting how many times an element is larger than the next (`L[i] > L[i+1]`). We'll refer to these out-of-order pairs as "inversions." Based on the total number of inversions, we will return a value denoting which kind of sorting we want to do.
 
 $n_{inversions}$     | Return Value                         | Description
-------            |----------                      |---------------
+------            |-----------                      |--------------
 0                    | `MagicCase.SORTED`                   | List is already sorted
-`<INVERSION_BOUND` | `MagicCase.CONSTANT_INVERSIONS`      | Fewer than some constant number of inversions.
 `n-1`                | `MagicCase.REVERSE_SORTED`           | List is reverse-sorted
+`<=INVERSION_BOUND` | `MagicCase.CONSTANT_INVERSIONS`      | At most some constant number of inversions
 Other                | `MagicCase.GENERAL`                  | None of the above special cases apply
 
 We have already defined a constant `INVERSION_BOUND` and an **enumeration** called `MagicCase` to help make this function's return value readable. An enumeration is a set of symbolic names that are bound to unique values ([docs](https://docs.python.org/3/library/enum.html)). We could just use integers instead, but enumerations make our code more readable:
@@ -132,7 +133,7 @@ Implement a function named `magic_quicksort(L, left, right, depth=0)` that sorts
 We're finally ready to fully implement our hybrid sorting algorithm! Implement a function named `magicsort(L)` that takes an input list and does the following:
 
 * Calls `linear_scan` on the list to determine which `MagicCase` it falls into.
-* If the input falls into the `SORTED`, `CONSTANT_INVERSIONS`, or `REVERSE_SORTED` cases, immediately return or call the approriate linear time sorting method.
+* If the input falls into the `SORTED`, `REVERSE_SORTED`, lr `CONSTANT_INVERSIONS` cases, immediately return or call the approriate linear time sorting method.
 * If the input falls into the `GENERAL` case, call `magic_quicksort` on `L`  with `left` and `right` set to 0 and `len(L)`, respectively.
 
 Your `magicsort` algorithm should:

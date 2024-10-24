@@ -56,14 +56,19 @@ def reverse_list(L, alg_set=None):
         L (list): A list of integers
         alg_set (set): A set of names of the sorting algorithms used
     Returns:
-        list: The reversed list
+        set: A set of names of the sorting algorithms used
     """
+    # Keep track of the sorting algorithm used
+    if alg_set is None:
+        alg_set = set()
+    alg_set.add("reverse_list")
+
     # Reverse the list, loop through the first half of the list and swap with the second half using an in place swap
     for i in range(len(L) // 2):
         # Swap the elements at the two indices at the same distance from the ends of the list
         L[i], L[-i - 1] = L[-i - 1], L[i]
 
-    return L
+    return alg_set
 
 
 def magic_insertionsort(L, left, right, alg_set=None):
@@ -78,8 +83,13 @@ def magic_insertionsort(L, left, right, alg_set=None):
         right (int): The right index of the sublist to sort
         alg_set (set): A set of names of the sorting algorithms used
     Returns:
-        list: The sorted list
+        set: A set of names of the sorting algorithms used
     """
+    # Keep track of the sorting algorithm used
+    if alg_set is None:
+        alg_set = set()
+    alg_set.add("magic_insertionsort")
+
     # Loop through the list from the left index to the right index
     for i in range(left + 1, right):
         # Store the current element in a temporary variable
@@ -97,7 +107,7 @@ def magic_insertionsort(L, left, right, alg_set=None):
         # Insert the current element in the correct position
         L[j + 1] = current
 
-    return L
+    return alg_set
 
 
 def magic_mergesort(L, left, right, alg_set=None):
@@ -112,8 +122,13 @@ def magic_mergesort(L, left, right, alg_set=None):
         right (int): The right index of the sublist to sort
         alg_set (set): A set of names of the sorting algorithms used
     Returns:
-        list: The sorted list
+        set: A set of names of the sorting algorithms used
     """
+    # Keep track of the sorting algorithm used
+    if alg_set is None:
+        alg_set = set()
+    alg_set.add("magic_mergesort")
+
     # Call magic_insertionsort to sort sublists with 20 items or fewer. Quadratic sorting algorithms outperform nlogn algorithms on these small lists.
     if right - left <= 20:
         return magic_insertionsort(L, left, right, alg_set)
@@ -153,7 +168,7 @@ def magic_mergesort(L, left, right, alg_set=None):
         j += 1
         k += 1
 
-    return L
+    return alg_set
 
 
 def magic_quicksort(L, left, right, depth=0, alg_set=None):
@@ -169,8 +184,13 @@ def magic_quicksort(L, left, right, depth=0, alg_set=None):
         depth (int): The depth of the recursion
         alg_set (set): A set of names of the sorting algorithms used
     Returns:
-        list: The sorted list
+        set: A set of names of the sorting algorithms used
     """
+    # Keep track of the sorting algorithm used
+    if alg_set is None:
+        alg_set = set()
+    alg_set.add("magic_quicksort")
+
     # Call magic_insertionsort to sort sublists with 20 items or fewer. Quadratic sorting algorithms outperform nlogn algorithms on these small lists.
     if right - left <= 20:
         return magic_insertionsort(L, left, right, alg_set)
@@ -197,7 +217,7 @@ def magic_quicksort(L, left, right, depth=0, alg_set=None):
     magic_quicksort(L, left, i + 1, depth + 1, alg_set)
     magic_quicksort(L, i + 2, right, depth + 1, alg_set)
 
-    return L
+    return alg_set
 
 
 def magicsort(L):
@@ -217,18 +237,13 @@ def magicsort(L):
 
     # Sort the list based on the MagicCase
     if case == MagicCase.SORTED:
-        return alg_set
+        # Already sorted
+        pass
     elif case == MagicCase.REVERSE_SORTED:
-        alg_set.add("reverse_list")
-        reverse_list(L, alg_set)
-        return alg_set
+        alg_set = reverse_list(L, alg_set)
     elif case == MagicCase.CONSTANT_INVERSIONS:
-        alg_set.add("magic_insertionsort")
-        magic_insertionsort(L, 0, len(L), alg_set)
+        alg_set = magic_insertionsort(L, 0, len(L), alg_set)
     else:
-        alg_set.add("magic_insertionsort")
-        alg_set.add("magic_mergesort")
-        alg_set.add("magic_quicksort")
-        magic_quicksort(L, 0, len(L), 0, alg_set)
+        alg_set = magic_quicksort(L, 0, len(L), 0, alg_set)
 
     return alg_set
