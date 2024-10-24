@@ -12,6 +12,44 @@ class MagicCase(Enum):
     REVERSE_SORTED = 3
 
 
+def merge(L, left, mid, right):
+    """
+    Merges two sorted halves of a list into one sorted list
+    Parameters:
+        L (list): A list of integers
+        left (int): The left index of the list
+        mid (int): The middle index of the list
+        right (int): The right index of the list
+    """
+    # Merge the two sorted halves
+    left_half = L[left:mid]
+    right_half = L[mid:right]
+    i = j = k = 0
+
+    # Loop through the left and right halves and merge them
+    while i < len(left_half) and j < len(right_half):
+        # Compare the elements at the current indices and insert the smaller element into the list
+        if left_half[i] < right_half[j]:
+            L[left + k] = left_half[i]
+            i += 1
+        else:
+            L[left + k] = right_half[j]
+            j += 1
+        k += 1
+
+    # Insert any remaining elements from the left half into the list
+    while i < len(left_half):
+        L[left + k] = left_half[i]
+        i += 1
+        k += 1
+
+    # Insert any remaining elements from the right half into the list
+    while j < len(right_half):
+        L[left + k] = right_half[j]
+        j += 1
+        k += 1
+
+
 def linear_scan(L):
     """
     Scans a list from left to right and counts how many times an element is greater than the next element.
@@ -140,33 +178,7 @@ def magic_mergesort(L, left, right, alg_set=None):
     magic_mergesort(L, left, mid, alg_set)
     magic_mergesort(L, mid, right, alg_set)
 
-    # Merge the two sorted halves
-    left_half = L[left:mid]
-    right_half = L[mid:right]
-    i = j = k = 0
-
-    # Loop through the left and right halves and merge them
-    while i < len(left_half) and j < len(right_half):
-        # Compare the elements at the current indices and insert the smaller element into the list
-        if left_half[i] < right_half[j]:
-            L[left + k] = left_half[i]
-            i += 1
-        else:
-            L[left + k] = right_half[j]
-            j += 1
-        k += 1
-
-    # Insert any remaining elements from the left half into the list
-    while i < len(left_half):
-        L[left + k] = left_half[i]
-        i += 1
-        k += 1
-
-    # Insert any remaining elements from the right half into the list
-    while j < len(right_half):
-        L[left + k] = right_half[j]
-        j += 1
-        k += 1
+    merge(L, left, mid, right)
 
     return alg_set
 

@@ -1,9 +1,9 @@
-import unittest
 import random
-random.seed(658) # Fixing the random seed to guarntee behvaior on random tests
+import unittest
+
+random.seed(658)  # Fixing the random seed to guarntee behvaior on random tests
 from magicsort import INVERSION_BOUND
 from magicsort import magicsort
-
 
 
 class TestMagicSort(unittest.TestCase):

@@ -1,6 +1,7 @@
-import unittest
 import random
-random.seed(658) # Fixing the random seed to guarntee behvaior on random tests
+import unittest
+
+random.seed(658)  # Fixing the random seed to guarntee behvaior on random tests
 from magicsort import MagicCase
 from magicsort import INVERSION_BOUND
 from magicsort import linear_scan
@@ -59,6 +60,7 @@ class TestLinearScan(unittest.TestCase):
             expected_output = MagicCase.GENERAL
             actual_output = linear_scan(L)
             self.assertEqual(actual_output, expected_output)
+
 
 if __name__ == "__main__":
     unittest.main()

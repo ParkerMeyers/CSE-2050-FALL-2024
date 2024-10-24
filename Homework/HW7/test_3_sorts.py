@@ -1,12 +1,15 @@
-import unittest
 import random
-random.seed(658) # Fixing the random seed to guarntee behvaior on random tests
+import unittest
+
+random.seed(658)  # Fixing the random seed to guarntee behvaior on random tests
 from magicsort import magic_insertionsort
 from magicsort import magic_mergesort
 from magicsort import magic_quicksort
 
+
 class TestMagicBoundedSort():
     """Test Factory for insertion, magic, and quick-sorts only sorting a sublist"""
+
     def test_empty_list(self):
         """Tests sorting alg on empty list"""
         L = []
@@ -47,9 +50,11 @@ class TestMagicBoundedSort():
             self.sorting_alg(L, left, right)
             self.assertEqual(L, expected_output)
 
+
 class TestMagicInsertionSort(TestMagicBoundedSort, unittest.TestCase):
     def setUp(self):
         self.sorting_alg = magic_insertionsort
+
 
 #########################################################################
 # Uncomment the classes below when you're ready to test each algorithm. #
@@ -59,9 +64,11 @@ class TestMagicMergeSort(TestMagicBoundedSort, unittest.TestCase):
     def setUp(self):
         self.sorting_alg = magic_mergesort
 
+
 class TestMagicQuickSort(TestMagicBoundedSort, unittest.TestCase):
     def setUp(self):
         self.sorting_alg = magic_quicksort
+
 
 if __name__ == "__main__":
     unittest.main()
